@@ -16,18 +16,17 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "가수 정소안의 음악세상",
-  description: "가수 정소안의 공연, 앨범발매 등 각종 소식을 전해드립니다.",
+  description: "앨범발매, 공연 및 강종 소식을 전해드립니다.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
-        {/* 기본 Meta Tags */}
         <title>가수 정소안의 음악세상</title>
         <meta
           name="description"
-          content="가수 정소안의 공연, 앨범발매 등 각종 소식을 전해드립니다."
+          content="앨범발매, 공연 및 강종 소식을 전해드립니다."
         />
 
         {/* Open Graph Meta Tags */}
