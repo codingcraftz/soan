@@ -10,24 +10,18 @@ const Header = () => {
       <Link href="/">
         <h1 className="text-2xl font-semibold font-korean">정소안</h1>
       </Link>
-      <nav className="flex space-x-4">
+      <nav className="flex space-x-4 curosr-pointer">
         <Link
-          href="/music"
+          href="/albums"
           className="text-gray-500 hover:text-gray-800 font-quicksand"
         >
-          Music
+          Album
         </Link>
         <Link
           href="/news"
           className="text-gray-500 hover:text-gray-800 font-quicksand"
         >
           News
-        </Link>
-        <Link
-          href="/schedule"
-          className="text-gray-500 hover:text-gray-800 font-quicksand"
-        >
-          Schedule
         </Link>
         <Link
           href="/contact"
