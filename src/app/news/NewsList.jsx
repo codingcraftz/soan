@@ -28,10 +28,10 @@ function NewsList({ newsList }) {
             } hover:bg-gray-200 transition-colors duration-300`}
             onClick={() => toggleContent(news.id)}
           >
-            <h2 className="text-xl font-semibold text-gray-800">
-              {news.title}
-            </h2>
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-1 flex-col md:flex-row items-start md:items-center justify-between">
+              <h2 className="text-xl font-semibold text-gray-800">
+                {news.title}
+              </h2>
               <p className="text-sm text-gray-500">
                 {new Date(news.date).toLocaleDateString("ko-KR", {
                   year: "numeric",
@@ -39,20 +39,16 @@ function NewsList({ newsList }) {
                   day: "2-digit",
                 })}
               </p>
-              <span className="text-gray-500 text-2xl">
-                {expandedId === news.id ? (
-                  <AiOutlineMinus />
-                ) : (
-                  <AiOutlinePlus />
-                )}
-              </span>
             </div>
+            <span className="text-gray-500 text-2xl ml-4">
+              {expandedId === news.id ? <AiOutlineMinus /> : <AiOutlinePlus />}
+            </span>
           </div>
 
           {/* 내용 */}
           <div
             className={`transition-all duration-500 ease-in-out overflow-hidden ${
-              expandedId === news.id ? "max-h-[1000px]" : "max-h-0"
+              expandedId === news.id ? "h-full" : "max-h-0"
             }`}
           >
             <div className="p-6 border-t border-gray-200 leading-relaxed bg-white flex">
