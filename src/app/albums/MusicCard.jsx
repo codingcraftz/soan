@@ -65,7 +65,7 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
 
       {/* Album info */}
       <div className="p-4">
-        <Text size="4" className="font-semibold">
+        <Text size="4" className="font-semibold mr-2">
           {title}
         </Text>
         <Text size="2" className="text-gray-500">
