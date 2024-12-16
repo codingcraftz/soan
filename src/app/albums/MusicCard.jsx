@@ -58,7 +58,7 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
           {isPlaying ? (
             <FaPause width="24" height="24" />
           ) : (
-            <FaPlay width="20" height="20" />
+            <FaPlay width="18" height="18" />
           )}
         </button>
       </div>
