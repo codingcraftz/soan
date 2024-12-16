@@ -2,47 +2,51 @@
 
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="bg-gray-100 min-h-screen text-gray-800 font-sans">
       <section className="grid grid-cols-2 gap-8 p-8">
-        {/* Left Section */}
+        <div className="flex flex-col justify-center items-center text-center">
+          <h2 className="text-3xl font-semibold mb-4">Albums</h2>
+          <p className="mb-6 text-gray-600">음악과 함께 떠나는 작은 여행</p>
+          <Link
+            className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600"
+            href="/albums"
+          >
+            음악 들으러 가기
+          </Link>
+        </div>
+
+        <div className="flex items-center justify-center overflow-hidden">
+          <Image
+            src="/images/home_1.jpg"
+            alt="soan"
+            className="w-full h-72 object-cover rounded-lg shadow-lg object-bottom"
+            width={300}
+            height={300}
+          />
+        </div>
+
+        <div className="flex items-center justify-center overflow-hidden">
+          <Image
+            src="/images/home_2.jpg"
+            alt="soan"
+            className="w-full h-72 object-cover rounded-lg shadow-lg"
+            width={300}
+            height={300}
+          />
+        </div>
+
         <div className="flex flex-col justify-center items-center text-center">
           <h2 className="text-3xl font-semibold mb-4">News</h2>
           <p className="mb-6 text-gray-600">
-            This Autumn, the artist goes international with the Life and the
-            Land European tour.
+            공연 일정, 앨범 발매 소식 등 다양한 소식
           </p>
           <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600">
-            Read more
-          </button>
-        </div>
-
-        {/* Artist Image */}
-        <div className="flex items-center justify-center">
-          <img
-            src="/path-to-artist-photo.jpg"
-            alt="Artist"
-            className="w-72 h-72 object-cover rounded-lg shadow-lg"
-          />
-        </div>
-
-        {/* Gig Section */}
-        <div className="flex items-center justify-center">
-          <img
-            src="/path-to-gig-photo.jpg"
-            alt="Gig Image"
-            className="w-full h-72 object-cover rounded-lg shadow-lg"
-          />
-        </div>
-
-        <div className="flex flex-col justify-center items-center text-center">
-          <h2 className="text-3xl font-semibold mb-4">Gigs</h2>
-          <p className="mb-6 text-gray-600">
-            Find out when the artist is coming to a town near you.
-          </p>
-          <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600">
-            Read more
+            우리의 이야기 보러가기
           </button>
         </div>
       </section>

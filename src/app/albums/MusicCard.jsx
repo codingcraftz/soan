@@ -2,6 +2,9 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import ReactPlayer from "react-player";
+import { FaPause, FaPlay } from "react-icons/fa";
+
+import { Box, Text } from "@radix-ui/themes";
 
 const MusicCard = ({ youtubeUrl, title, artist }) => {
   const playerRef = useRef(null);
@@ -9,13 +12,13 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
   const [progress, setProgress] = useState(0);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isClient, setIsClient] = useState(false); // 클라이언트 전용 설정
+  const [isClient, setIsClient] = useState(false); // Client-only rendering
   const videoId = youtubeUrl.split("v=")[1].split("&")[0];
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   const [isSeeking, setIsSeeking] = useState(false);
 
   useEffect(() => {
-    setIsClient(true); // 클라이언트에서만 렌더링
+    setIsClient(true);
   }, []);
 
   const handlePlayPause = () => {
@@ -33,20 +36,6 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
     setDuration(duration);
   };
 
-  const handleSeekMouseDown = () => {
-    setIsSeeking(true);
-  };
-
-  const handleSeekChange = (e) => {
-    setProgress(parseFloat(e.target.value));
-  };
-
-  const handleSeekMouseUp = (e) => {
-    setIsSeeking(false);
-    const newProgress = parseFloat(e.target.value) / 100;
-    playerRef.current.seekTo(newProgress);
-  };
-
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -54,8 +43,8 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-72">
-      {/* 앨범 이미지 및 플레이 버튼 */}
+    <Box className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden w-72">
+      {/* Album image and play/pause button */}
       <div className="relative">
         <img
           src={thumbnailUrl}
@@ -66,15 +55,22 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
           className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white w-10 h-10 flex items-center justify-center rounded-full"
           onClick={handlePlayPause}
         >
-          {isPlaying ? "❚❚" : "▶"}
+          {isPlaying ? (
+            <FaPause width="24" height="24" />
+          ) : (
+            <FaPlay width="20" height="20" />
+          )}
         </button>
       </div>
 
-      {/* 앨범 정보 */}
+      {/* Album info */}
       <div className="p-4">
-        <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="text-gray-500">{artist}</p>
-        {/* 재생바 및 시간 */}
+        <Text size="4" className="font-semibold">
+          {title}
+        </Text>
+        <Text size="2" className="text-gray-500">
+          {artist}
+        </Text>
         <div className="w-full mt-4 mb-2 flex items-center space-x-2 text-gray-600">
           <span>{formatTime(playedSeconds)}</span>
           <input
@@ -82,19 +78,23 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
             min="0"
             max="100"
             value={progress}
-            onMouseDown={handleSeekMouseDown}
-            onChange={handleSeekChange}
-            onMouseUp={handleSeekMouseUp}
+            onMouseDown={() => setIsSeeking(true)}
+            onChange={(e) => setProgress(parseFloat(e.target.value))}
+            onMouseUp={(e) => {
+              setIsSeeking(false);
+              const newProgress = parseFloat(e.target.value) / 100;
+              playerRef.current.seekTo(newProgress);
+            }}
             className="w-full appearance-none h-2 bg-gray-300 rounded-full outline-none cursor-pointer"
             style={{
-              background: `linear-gradient(to right, #4A5568 ${progress}%, #E2E8F0 ${progress}%)`,
+              background: `linear-gradient(to right, var(--accent-color) ${progress}%, #E2E8F0 ${progress}%)`,
             }}
           />
           <span>{formatTime(duration)}</span>
         </div>
       </div>
 
-      {/* 숨겨진 ReactPlayer (음악 재생용) */}
+      {/* Hidden ReactPlayer for music playback */}
       {isClient && (
         <ReactPlayer
           ref={playerRef}
@@ -106,7 +106,7 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
           height="0"
         />
       )}
-    </div>
+    </Box>
   );
 };
 

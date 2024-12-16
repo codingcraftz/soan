@@ -1,5 +1,32 @@
 // src/utils/constant.js``
 
+export const NEWS_LIST = [
+  {
+    id: 3,
+    title: "New Album Release Announced",
+    date: "2024-12-01",
+    content:
+      "We’re excited to announce the release of our new album, 'Harmony in Motion', on December 15th! Stay tuned for more updates.",
+    image: "/images/news_1.jpg",
+  },
+  {
+    id: 2,
+    title: "Upcoming Concert in Seoul",
+    date: "2024-12-10",
+    content:
+      "Join us for an unforgettable night at the Seoul Arts Center on January 5th, 2025. Tickets are now available!",
+    image: "/images/news_2.jpg",
+  },
+  {
+    id: 1,
+    title: "어린이동요 '바다야' 발매",
+    date: "2024-08-27",
+    content:
+      "오래전부터 꼭 내고싶었던 동요 '바다야' 발매소식!\n<a src='https://www.youtube.com/watch?v=rZpQ7zfvMRU'/>",
+    image: "/images/바다야.jpg",
+  },
+];
+
 export const MUSIC_LIST = [
   {
     youtubeUrl:
