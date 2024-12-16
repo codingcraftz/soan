@@ -43,7 +43,7 @@ const MusicCard = ({ youtubeUrl, title, artist }) => {
   };
 
   return (
-    <Box className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden w-72">
+    <Box className="bg-white shadow-lg rounded-lg overflow-hidden w-72">
       {/* Album image and play/pause button */}
       <div className="relative">
         <img
