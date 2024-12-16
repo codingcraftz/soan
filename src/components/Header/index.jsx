@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between p-6 px-12 border-b border-gray-300 font-quicksand w-full bg-gray-100">
+    <header className="flex items-center justify-between p-6 md:px-12 border-b border-gray-300 font-quicksand w-full bg-gray-100">
       <Link href="/">
         <h1 className="text-2xl font-semibold font-korean">정소안</h1>
       </Link>

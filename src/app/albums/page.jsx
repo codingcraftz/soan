@@ -9,7 +9,7 @@ import AlbumInfo from "./AlbumInfo";
 export default function MusicPage() {
   return (
     <div className="flex flex-col items-center space-y-12 mb-14 max-w-screen-md ">
-      <h1 className="text-2xl font-semibold px-8 py-6 text-gray-600 text-center">
+      <h1 className="text-2xl font-semibold pt-6 text-gray-600 text-center">
         정소안의 음악일기
       </h1>
       {MUSIC_LIST.map((music, index) => (
