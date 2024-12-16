@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-gray-100 min-h-screen text-gray-800 font-sans">
+    <main className="bg-gray-100 min-h-screen text-gray-800 font-sans w-full">
       <section className="grid grid-cols-2 gap-8 p-8">
         <div className="flex flex-col justify-center items-center text-center">
           <h2 className="text-3xl font-semibold mb-4">Albums</h2>

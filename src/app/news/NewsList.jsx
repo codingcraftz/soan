@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw"; // HTML 태그 렌더링
 import Image from "next/image";
 import { useState } from "react";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"; // 아이콘 추가
 
 function NewsList({ newsList }) {
   const [expandedId, setExpandedId] = useState(null);
@@ -14,35 +15,68 @@ function NewsList({ newsList }) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-10 max-w-screen-md">
       {newsList.map((news) => (
         <div
           key={news.id}
-          className="bg-white shadow-lg rounded-lg overflow-hidden"
+          className="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden cursor-pointer"
         >
+          {/* 제목과 날짜 */}
           <div
-            className="p-6 cursor-pointer flex justify-between items-center"
+            className={`p-6 flex justify-between items-center ${
+              expandedId === news.id ? "bg-gray-100" : "bg-white"
+            } hover:bg-gray-200 transition-colors duration-300`}
             onClick={() => toggleContent(news.id)}
           >
-            <h2 className="text-xl font-semibold">{news.title}</h2>
-            <p className="text-sm text-gray-500">
-              {new Date(news.date).toLocaleDateString("ko-KR", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-              })}
-            </p>
+            <h2 className="text-xl font-semibold text-gray-800">
+              {news.title}
+            </h2>
+            <div className="flex items-center space-x-4">
+              <p className="text-sm text-gray-500">
+                {new Date(news.date).toLocaleDateString("ko-KR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}
+              </p>
+              <span className="text-gray-500 text-2xl">
+                {expandedId === news.id ? (
+                  <AiOutlineMinus />
+                ) : (
+                  <AiOutlinePlus />
+                )}
+              </span>
+            </div>
           </div>
 
           {/* 내용 */}
-          {expandedId === news.id && (
-            <div className="p-6 border-t border-gray-200">
-              {/* Markdown Content */}
+          <div
+            className={`transition-all duration-500 ease-in-out overflow-hidden ${
+              expandedId === news.id ? "max-h-[1000px]" : "max-h-0"
+            }`}
+          >
+            <div className="p-6 border-t border-gray-200 leading-relaxed bg-white flex">
               <ReactMarkdown
                 className="prose prose-indigo"
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]} // HTML 태그 지원
                 components={{
+                  hr: () => <hr className="my-4" />,
+                  h1: ({ node, children }) => (
+                    <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                      {children}
+                    </h1>
+                  ),
+                  h2: ({ node, children }) => (
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ node, children }) => (
+                    <h3 className="text-xl font-medium text-gray-600 py-4">
+                      {children}
+                    </h3>
+                  ),
                   img: ({ node, ...props }) => (
                     <Image
                       {...props}
@@ -58,7 +92,7 @@ function NewsList({ newsList }) {
                       (child) => child.tagName === "img",
                     );
                     if (isImage) return <>{children}</>;
-                    return <p>{children}</p>;
+                    return <p className="mb-1">{children}</p>;
                   },
                   iframe: ({ node, ...props }) => (
                     <div className="aspect-w-16 aspect-h-9">
@@ -74,7 +108,7 @@ function NewsList({ newsList }) {
                 {news.content}
               </ReactMarkdown>
             </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

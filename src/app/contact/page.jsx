@@ -35,7 +35,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto p-8">
+    <div className="max-w-screen-md mx-auto p-8 w-full">
       <h1 className="text-3xl font-bold mb-4 text-center">Contact Us</h1>
       <p className="text-gray-600 mb-6 text-center">
         공연 & 레슨 & 각종 비지니스 문의
