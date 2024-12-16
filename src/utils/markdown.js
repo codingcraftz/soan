@@ -6,7 +6,7 @@ import matter from "gray-matter";
 const contentDirectory = path.join(process.cwd(), "/src/content/news");
 
 export const getAllNews = () => {
-  const fileNames = fs.readdirSync(contentDirectory);
+  const fileNames = fs.readdirSync(contentDirectory).reverse();
 
   return fileNames.map((fileName) => {
     const filePath = path.join(contentDirectory, fileName);
